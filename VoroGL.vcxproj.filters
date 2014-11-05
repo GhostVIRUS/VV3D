@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;cxx;c;def</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h</Extensions>
+    </Filter>
+    <Filter Include="Form Files">
+      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
+      <Extensions>ui</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
+      <Extensions>qrc;*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Generated Files">
+      <UniqueIdentifier>{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}</UniqueIdentifier>
+      <Extensions>moc;h;cpp</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Debug">
+      <UniqueIdentifier>{ec466907-2b14-4aa2-8062-5f1963a31787}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Release">
+      <UniqueIdentifier>{e517c4c1-634c-428b-8290-2d3a21ff2fe5}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Header Files\voro++">
+      <UniqueIdentifier>{346e8aa4-fb6d-49c6-bb47-cb1e25a3abc4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\voro++">
+      <UniqueIdentifier>{5b570ef1-f45b-4242-8f54-09a554227381}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="VCanvas.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_VMainWindow.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_VMainWindow.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="VMainWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_VCanvas.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_VCanvas.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="voro++\c_loops.cc">
+      <Filter>Source Files\voro++</Filter>
+    </ClCompile>
+    <ClCompile Include="voro++\cell.cc">
+      <Filter>Source Files\voro++</Filter>
+    </ClCompile>
+    <ClCompile Include="voro++\common.cc">
+      <Filter>Source Files\voro++</Filter>
+    </ClCompile>
+    <ClCompile Include="voro++\container.cc">
+      <Filter>Source Files\voro++</Filter>
+    </ClCompile>
+    <ClCompile Include="voro++\pre_container.cc">
+      <Filter>Source Files\voro++</Filter>
+    </ClCompile>
+    <ClCompile Include="voro++\v_base.cc">
+      <Filter>Source Files\voro++</Filter>
+    </ClCompile>
+    <ClCompile Include="voro++\v_compute.cc">
+      <Filter>Source Files\voro++</Filter>
+    </ClCompile>
+    <ClCompile Include="voro++\wall.cc">
+      <Filter>Source Files\voro++</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VNewDiagramDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_VNewDiagramDialog.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_VNewDiagramDialog.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="VPoint.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VCell.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_v_resources.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VParticlesTableEdit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_VParticlesTableEdit.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_VParticlesTableEdit.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="VMainWindow.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="VCanvas.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="mainWindow.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="newDiagramDialog.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="VNewDiagramDialog.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="v_resources.qrc">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="VParticlesTableEdit.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="voro++\c_loops.hh">
+      <Filter>Header Files\voro++</Filter>
+    </ClInclude>
+    <ClInclude Include="voro++\cell.hh">
+      <Filter>Header Files\voro++</Filter>
+    </ClInclude>
+    <ClInclude Include="voro++\common.hh">
+      <Filter>Header Files\voro++</Filter>
+    </ClInclude>
+    <ClInclude Include="voro++\config.hh">
+      <Filter>Header Files\voro++</Filter>
+    </ClInclude>
+    <ClInclude Include="voro++\container.hh">
+      <Filter>Header Files\voro++</Filter>
+    </ClInclude>
+    <ClInclude Include="voro++\pre_container.hh">
+      <Filter>Header Files\voro++</Filter>
+    </ClInclude>
+    <ClInclude Include="voro++\rad_option.hh">
+      <Filter>Header Files\voro++</Filter>
+    </ClInclude>
+    <ClInclude Include="voro++\v_base.hh">
+      <Filter>Header Files\voro++</Filter>
+    </ClInclude>
+    <ClInclude Include="voro++\v_compute.hh">
+      <Filter>Header Files\voro++</Filter>
+    </ClInclude>
+    <ClInclude Include="voro++\wall.hh">
+      <Filter>Header Files\voro++</Filter>
+    </ClInclude>
+    <ClInclude Include="voro++\worklist.hh">
+      <Filter>Header Files\voro++</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_mainWindow.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_newDiagramDialog.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VPoint.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VCell.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resources\icons\document_16.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\icons\document_32.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\icons\diagram_16.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\icons\diagram_32.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\icons\delete_32.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\icons\plus_32.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+</Project>

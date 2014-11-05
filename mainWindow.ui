@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>mainWindow</class>
+ <widget class="QMainWindow" name="mainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>619</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>800</width>
+    <height>600</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Voronoi Viewer 3D</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QGridLayout" name="windowGridLayout">
+    <property name="bottomMargin">
+     <number>6</number>
+    </property>
+    <item row="0" column="0">
+     <widget class="QTabWidget" name="mainContent">
+      <property name="tabPosition">
+       <enum>QTabWidget::North</enum>
+      </property>
+      <property name="tabShape">
+       <enum>QTabWidget::Rounded</enum>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <property name="elideMode">
+       <enum>Qt::ElideNone</enum>
+      </property>
+      <property name="documentMode">
+       <bool>false</bool>
+      </property>
+      <property name="tabsClosable">
+       <bool>true</bool>
+      </property>
+      <property name="movable">
+       <bool>true</bool>
+      </property>
+      <widget class="VCanvas" name="mainCanvas">
+       <attribute name="title">
+        <string>Main Canvas</string>
+       </attribute>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="file">
+    <property name="title">
+     <string>Файл</string>
+    </property>
+    <addaction name="newDiagramAction"/>
+    <addaction name="newWindowAction"/>
+    <addaction name="separator"/>
+    <addaction name="openAction"/>
+    <addaction name="separator"/>
+    <addaction name="saveAction"/>
+    <addaction name="saveAsAction"/>
+    <addaction name="separator"/>
+    <addaction name="exit"/>
+   </widget>
+   <widget class="QMenu" name="edit">
+    <property name="title">
+     <string>Правка</string>
+    </property>
+    <addaction name="editParticles"/>
+   </widget>
+   <widget class="QMenu" name="view">
+    <property name="title">
+     <string>Вид</string>
+    </property>
+    <addaction name="toggleParticleEditorAction"/>
+   </widget>
+   <widget class="QMenu" name="settings">
+    <property name="title">
+     <string>Настройки</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="tools">
+    <property name="title">
+     <string>Инструменты</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="windows">
+    <property name="title">
+     <string>Окна</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="ref">
+    <property name="title">
+     <string>Справка</string>
+    </property>
+   </widget>
+   <addaction name="file"/>
+   <addaction name="edit"/>
+   <addaction name="view"/>
+   <addaction name="settings"/>
+   <addaction name="tools"/>
+   <addaction name="windows"/>
+   <addaction name="ref"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="newDiagramAction"/>
+  </widget>
+  <widget class="QDockWidget" name="particlesEditor">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="floating">
+    <bool>false</bool>
+   </property>
+   <property name="windowTitle">
+    <string>Редактор частиц</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>1</number>
+   </attribute>
+   <widget class="QWidget" name="particlesEditorWrapper">
+    <layout class="QGridLayout" name="gridLayout">
+     <property name="leftMargin">
+      <number>6</number>
+     </property>
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
+     <property name="bottomMargin">
+      <number>6</number>
+     </property>
+     <property name="horizontalSpacing">
+      <number>0</number>
+     </property>
+     <property name="verticalSpacing">
+      <number>1</number>
+     </property>
+     <item row="0" column="0">
+      <widget class="QToolButton" name="addParticle">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="v_resources.qrc">
+         <normaloff>:/v_res/Resources/icons/plus_32.png</normaloff>:/v_res/Resources/icons/plus_32.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>24</width>
+         <height>24</height>
+        </size>
+       </property>
+       <property name="checkable">
+        <bool>false</bool>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+       <property name="autoRepeat">
+        <bool>false</bool>
+       </property>
+       <property name="popupMode">
+        <enum>QToolButton::DelayedPopup</enum>
+       </property>
+       <property name="autoRaise">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QToolButton" name="deleteParticle">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="v_resources.qrc">
+         <normaloff>:/v_res/Resources/icons/delete_32.png</normaloff>:/v_res/Resources/icons/delete_32.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>24</width>
+         <height>24</height>
+        </size>
+       </property>
+       <property name="popupMode">
+        <enum>QToolButton::DelayedPopup</enum>
+       </property>
+       <property name="toolButtonStyle">
+        <enum>Qt::ToolButtonIconOnly</enum>
+       </property>
+       <property name="autoRaise">
+        <bool>true</bool>
+       </property>
+       <property name="arrowType">
+        <enum>Qt::NoArrow</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0" colspan="3">
+      <widget class="VParticlesTableEdit" name="particlesEditorTable">
+       <property name="gridStyle">
+        <enum>Qt::SolidLine</enum>
+       </property>
+       <property name="sortingEnabled">
+        <bool>false</bool>
+       </property>
+       <attribute name="horizontalHeaderCascadingSectionResizes">
+        <bool>false</bool>
+       </attribute>
+       <attribute name="horizontalHeaderDefaultSectionSize">
+        <number>50</number>
+       </attribute>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QToolBar" name="toolBar_2">
+   <property name="windowTitle">
+    <string>toolBar_2</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <action name="newDiagramAction">
+   <property name="icon">
+    <iconset resource="v_resources.qrc">
+     <normaloff>:/v_res/Resources/icons/document_16.png</normaloff>:/v_res/Resources/icons/document_16.png</iconset>
+   </property>
+   <property name="text">
+    <string>Новая диаграмма</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::ApplicationSpecificRole</enum>
+   </property>
+  </action>
+  <action name="openAction">
+   <property name="text">
+    <string>Открыть</string>
+   </property>
+  </action>
+  <action name="newWindowAction">
+   <property name="text">
+    <string>Новое окно</string>
+   </property>
+  </action>
+  <action name="saveAction">
+   <property name="text">
+    <string>Сохранить</string>
+   </property>
+  </action>
+  <action name="saveAsAction">
+   <property name="text">
+    <string>Сохранить как ...</string>
+   </property>
+  </action>
+  <action name="exit">
+   <property name="text">
+    <string>Выйти</string>
+   </property>
+  </action>
+  <action name="editParticles">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Входные данные</string>
+   </property>
+  </action>
+  <action name="toggleParticleEditorAction">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Редактор входных данных</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>VCanvas</class>
+   <extends>QWidget</extends>
+   <header>VCanvas.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>VParticlesTableEdit</class>
+   <extends>QTableWidget</extends>
+   <header>VParticlesTableEdit.h</header>
+   <slots>
+    <signal>particleChanged(int,double,double,double)</signal>
+    <signal>particleDeleted(int)</signal>
+    <slot>addRow()</slot>
+    <slot>deleteRow()</slot>
+    <slot>checkRow(int,int)</slot>
+   </slots>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="v_resources.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>newDiagramAction</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>newFile()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>309</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>toggleParticleEditorAction</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>particlesEditor</receiver>
+   <slot>setVisible(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>85</x>
+     <y>315</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>particlesEditor</sender>
+   <signal>visibilityChanged(bool)</signal>
+   <receiver>toggleParticleEditorAction</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>85</x>
+     <y>315</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>addParticle</sender>
+   <signal>clicked()</signal>
+   <receiver>particlesEditorTable</receiver>
+   <slot>addRow()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>12</x>
+     <y>91</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>28</x>
+     <y>208</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>deleteParticle</sender>
+   <signal>clicked()</signal>
+   <receiver>particlesEditorTable</receiver>
+   <slot>deleteRow()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>55</x>
+     <y>96</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>66</x>
+     <y>143</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>particlesEditorTable</sender>
+   <signal>cellChanged(int,int)</signal>
+   <receiver>particlesEditorTable</receiver>
+   <slot>checkRow(int,int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>94</x>
+     <y>272</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>101</x>
+     <y>421</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>particlesEditorTable</sender>
+   <signal>particleChanged(int,double,double,double)</signal>
+   <receiver>mainWindow</receiver>
+   <slot>updateParticle(int,double,double,double)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>78</x>
+     <y>331</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>570</x>
+     <y>-12</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>particlesEditorTable</sender>
+   <signal>particleDeleted(int)</signal>
+   <receiver>mainWindow</receiver>
+   <slot>deleteParticle(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>105</x>
+     <y>486</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>417</x>
+     <y>-19</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>newFile()</slot>
+  <slot>createNewFile(QString,int,VPoint,VPoint)</slot>
+  <slot>toggleParticlesEditor()</slot>
+  <slot>updateParticle(int,double,double,double)</slot>
+  <slot>deleteParticle(int)</slot>
+ </slots>
+</ui>

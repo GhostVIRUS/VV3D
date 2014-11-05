@@ -1,0 +1,10 @@
+<RCC>
+  <qresource prefix="v_res">
+    <file>Resources/icons/document_16.png</file>
+    <file>Resources/icons/document_32.png</file>
+    <file>Resources/icons/diagram_16.png</file>
+    <file>Resources/icons/diagram_32.png</file>
+    <file>Resources/icons/delete_32.png</file>
+    <file>Resources/icons/plus_32.png</file>
+  </qresource>
+</RCC>
