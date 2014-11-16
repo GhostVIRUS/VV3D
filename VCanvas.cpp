@@ -78,7 +78,7 @@ void VCanvas::paintGL()
 	glRotatef(rotationY, 0.0, 1.0, 0.0);
 	glRotatef(rotationZ, 0.0, 0.0, 1.0);
 
-	drawAxes(30.0);
+	drawAxes(axesLength);
 	if (drawingData != 0)
 		drawData();
 }
@@ -143,15 +143,15 @@ void VCanvas::drawAxes(GLdouble length)
 	glPushMatrix();
 	qglColor(Qt::darkBlue);
 
-	renderText(0.3, 0.1, 0.0, QChar('x'));
-	for (GLdouble i = 1; i <= length; i = i + 1.0)
+	renderText(length, 0.1, 0.0, QChar('x'));
+	for (GLdouble i = 1; i <= length-1; i = i + 1.0)
 	{
  		glBegin(GL_POINTS);
 		glVertex3f(i, 0.0, 0.0);
 		glVertex3f(-i, 0.0, 0.0);
  		glEnd();
 
-		if ((int)i%5 == 0)
+		if ((int)i % 1 == 0)
 		{
 			renderText(i, 0.1, 0.0, QString::number(i));
 			renderText(-i, 0.1, 0.0, QString::number(-i));
@@ -165,15 +165,16 @@ void VCanvas::drawAxes(GLdouble length)
 	//glPopMatrix();
 
 	//glPushMatrix();
-	renderText(0.1, 0.3, 0.0, QChar('y'));
-	for (GLdouble i = 1; i <= length; i = i + 1.0)
+	qglColor(Qt::darkGreen);
+	renderText(0.1, length, 0.0, QChar('y'));
+	for (GLdouble i = 1; i <= length-1; i = i + 1.0)
 	{
 		glBegin(GL_POINTS);
 		glVertex3f(0.0, i, 0.0);
 		glVertex3f(0.0, -i, 0.0);
 		glEnd();
 
-		if ((int)i % 5 == 0)
+		if ((int)i % 1 == 0)
 		{
 			renderText(0.1, i, 0.0, QString::number(i));
 			renderText(0.1, -i, 0.0, QString::number(-i));
@@ -187,15 +188,16 @@ void VCanvas::drawAxes(GLdouble length)
 	//glPopMatrix();
 
 	//glPushMatrix();
-	renderText(0.0, 0.1, 0.3, QChar('z'));
-	for (GLdouble i = 1; i <= length; i = i + 1.0)
+	qglColor(Qt::darkCyan);
+	renderText(0.0, 0.1, length, QChar('z'));
+	for (GLdouble i = 1; i <= length-1; i = i + 1.0)
 	{
 		glBegin(GL_POINTS);
 		glVertex3f(0.0, 0.0, i);
 		glVertex3f(0.0, 0.0, -i);
 		glEnd();
 
-		if ((int)i % 5 == 0)
+		if ((int)i % 1 == 0)
 		{
 			renderText(0.0, 0.1, i, QString::number(i));
 			renderText(0.0, 0.1, -i, QString::number(-i));
@@ -245,73 +247,7 @@ int VCanvas::faceAtPosition(const QPoint &pos)
 }*/
 
 void VCanvas::drawData()
-{/*
-	//drawing particles
-	qglColor(Qt::red);
-	for (int c = 0; c < drawingData->size(); ++c)
-	{
-		const VPoint *pParticle = drawingData->at(c)->getParticle();
-		glBegin(GL_POINTS);
-		glVertex3f(pParticle->x, pParticle->y, pParticle->z);
-		glEnd();
-		renderText(pParticle->x - 0.3, pParticle->y, pParticle->z, QString::number(c+1));
-	}
-	
-
-	//drawing faces
-//	if (!transparency)
-//	{
-	glEnable(GL_BLEND);
-	glDepthMask(GL_FALSE);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-	for (int c = 0; c < drawingData->size(); ++c)
-	{
-		qglColor(*drawingData->at(c)->getColor());
-		int fc = drawingData->at(c)->faceCount();
-		for (int i = 0; i < fc; ++i)
-		{
-			//glLoadName(i);
-			const QList<VPoint> *pFace = drawingData->at(c)->getFace(i);
-			glBegin(GL_POLYGON);
-			for (int j = 0; j < pFace->size(); ++j)
-			{
-				glVertex3f(pFace->at(j).x, pFace->at(j).y, pFace->at(j).z);
-			}
-			glEnd();
-		}
-	}
-//	}
-	glDepthMask(GL_TRUE);
-
-	//drawing face' wires
-	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-	qglColor(Qt::black);
-	for (int c = 0; c < drawingData->size(); ++c)
-	{
-		int fc = drawingData->at(c)->faceCount();
-		for (int i = 0; i < fc; ++i) {
-			//glLoadName(i);
-			const QList<VPoint> *pFace = drawingData->at(c)->getFace(i);
-			glBegin(GL_LINE_LOOP);
-			for (int j = 0; j < pFace->size(); ++j)
-			{
-				glVertex3f(pFace->at(j).x, pFace->at(j).y, pFace->at(j).z);
-			}
-			glEnd();
-		}
-	}
-	glDisable(GL_BLEND);
-	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);*/
-
-
-	//////////////////////////////////////////////////////////////////////////
-
-
+{
 	//drawing particles
 	QMapIterator<int, VCell *> i(*drawingData);
 	qglColor(Qt::red);

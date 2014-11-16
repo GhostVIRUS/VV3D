@@ -83,7 +83,7 @@
     <property name="title">
      <string>Правка</string>
     </property>
-    <addaction name="editParticles"/>
+    <addaction name="editParticlesAction"/>
    </widget>
    <widget class="QMenu" name="view">
     <property name="title">
@@ -302,8 +302,11 @@
     <string>Выйти</string>
    </property>
   </action>
-  <action name="editParticles">
+  <action name="editParticlesAction">
    <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="enabled">
     <bool>false</bool>
    </property>
    <property name="text">
@@ -472,6 +475,22 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>editParticlesAction</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>editParticles()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>309</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>newFile()</slot>
@@ -479,5 +498,6 @@
   <slot>toggleParticlesEditor()</slot>
   <slot>updateParticle(int,double,double,double)</slot>
   <slot>deleteParticle(int)</slot>
+  <slot>editParticles()</slot>
  </slots>
 </ui>

@@ -9,6 +9,7 @@
 #include "../../VMainWindow.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
+#include <QtCore/QList>
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'VMainWindow.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
@@ -19,8 +20,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_VMainWindow_t {
-    QByteArrayData data[15];
-    char stringdata[96];
+    QByteArrayData data[19];
+    char stringdata[151];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -43,11 +44,16 @@ QT_MOC_LITERAL(10, 71, 3),
 QT_MOC_LITERAL(11, 75, 1),
 QT_MOC_LITERAL(12, 77, 1),
 QT_MOC_LITERAL(13, 79, 1),
-QT_MOC_LITERAL(14, 81, 14)
+QT_MOC_LITERAL(14, 81, 14),
+QT_MOC_LITERAL(15, 96, 13),
+QT_MOC_LITERAL(16, 110, 15),
+QT_MOC_LITERAL(17, 126, 14),
+QT_MOC_LITERAL(18, 141, 9)
     },
     "VMainWindow\0createNewFile\0\0name\0type\0"
     "VPoint\0a\0b\0newFile\0updateParticle\0row\0"
-    "x\0y\0z\0deleteParticle"
+    "x\0y\0z\0deleteParticle\0editParticles\0"
+    "updateParticles\0QList<VPoint*>\0particles"
 };
 #undef QT_MOC_LITERAL
 
@@ -57,7 +63,7 @@ static const uint qt_meta_data_VMainWindow[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       4,   14, // methods
+       6,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -65,16 +71,20 @@ static const uint qt_meta_data_VMainWindow[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    4,   34,    2, 0x0a /* Public */,
-       8,    0,   43,    2, 0x0a /* Public */,
-       9,    4,   44,    2, 0x0a /* Public */,
-      14,    1,   53,    2, 0x0a /* Public */,
+       1,    4,   44,    2, 0x0a /* Public */,
+       8,    0,   53,    2, 0x0a /* Public */,
+       9,    4,   54,    2, 0x0a /* Public */,
+      14,    1,   63,    2, 0x0a /* Public */,
+      15,    0,   66,    2, 0x0a /* Public */,
+      16,    1,   67,    2, 0x0a /* Public */,
 
  // slots: parameters
     QMetaType::Void, QMetaType::QString, QMetaType::Int, 0x80000000 | 5, 0x80000000 | 5,    3,    4,    6,    7,
     QMetaType::Void,
     QMetaType::Void, QMetaType::Int, QMetaType::Double, QMetaType::Double, QMetaType::Double,   10,   11,   12,   13,
     QMetaType::Void, QMetaType::Int,   10,
+    QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 17,   18,
 
        0        // eod
 };
@@ -88,6 +98,8 @@ void VMainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         case 1: _t->newFile(); break;
         case 2: _t->updateParticle((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< double(*)>(_a[2])),(*reinterpret_cast< double(*)>(_a[3])),(*reinterpret_cast< double(*)>(_a[4]))); break;
         case 3: _t->deleteParticle((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 4: _t->editParticles(); break;
+        case 5: _t->updateParticles((*reinterpret_cast< QList<VPoint*>(*)>(_a[1]))); break;
         default: ;
         }
     }
@@ -118,13 +130,13 @@ int VMainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 4)
+        if (_id < 6)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 4;
+        _id -= 6;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 4)
+        if (_id < 6)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 4;
+        _id -= 6;
     }
     return _id;
 }

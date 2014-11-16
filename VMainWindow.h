@@ -9,6 +9,7 @@
 
 #include "ui_mainWindow.h"
 #include "VNewDiagramDialog.h"
+#include "VEditParticlesDialog.h"
 #include "VPoint.h"
 #include "VCanvas.h"
 #include "VCell.h"
@@ -27,6 +28,8 @@ public slots:
 	//void updateParticles();
 	void updateParticle(int row, double x, double y, double z);
 	void deleteParticle(int row);
+	void editParticles();
+	void updateParticles(QList<VPoint *> particles);
 
 private:
 	void updateContainer(int added = -1);
@@ -38,17 +41,14 @@ private:
 	Ui::mainWindow ui; // contains objects and settings for user interface
 
 	VNewDiagramDialog *ndd;
+	VEditParticlesDialog *epd;
 
-	//QList<VCanvas *> canvases;
 	QMap<QString, VCanvas *> canvases;
-	//QMap<int, VPoint> particles;
 	QPair<VPoint, VPoint> containerBorders;
 
 	voro::container *particlesContainer;
 	voro::particle_order *particlesOrder;
-//	voro::pre_container *particlesPreContainer;
 
-	//QList<VCell *> cells;
 	QMap<int, VCell *> cells;
 };
 

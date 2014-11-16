@@ -38,7 +38,7 @@ public:
     QAction *saveAction;
     QAction *saveAsAction;
     QAction *exit;
-    QAction *editParticles;
+    QAction *editParticlesAction;
     QAction *toggleParticleEditorAction;
     QWidget *centralWidget;
     QGridLayout *windowGridLayout;
@@ -84,9 +84,10 @@ public:
         saveAsAction->setObjectName(QStringLiteral("saveAsAction"));
         exit = new QAction(mainWindow);
         exit->setObjectName(QStringLiteral("exit"));
-        editParticles = new QAction(mainWindow);
-        editParticles->setObjectName(QStringLiteral("editParticles"));
-        editParticles->setCheckable(false);
+        editParticlesAction = new QAction(mainWindow);
+        editParticlesAction->setObjectName(QStringLiteral("editParticlesAction"));
+        editParticlesAction->setCheckable(false);
+        editParticlesAction->setEnabled(false);
         toggleParticleEditorAction = new QAction(mainWindow);
         toggleParticleEditorAction->setObjectName(QStringLiteral("toggleParticleEditorAction"));
         toggleParticleEditorAction->setCheckable(true);
@@ -213,7 +214,7 @@ public:
         file->addAction(saveAsAction);
         file->addSeparator();
         file->addAction(exit);
-        edit->addAction(editParticles);
+        edit->addAction(editParticlesAction);
         view->addAction(toggleParticleEditorAction);
         toolBar->addAction(newDiagramAction);
 
@@ -226,6 +227,7 @@ public:
         QObject::connect(particlesEditorTable, SIGNAL(cellChanged(int,int)), particlesEditorTable, SLOT(checkRow(int,int)));
         QObject::connect(particlesEditorTable, SIGNAL(particleChanged(int,double,double,double)), mainWindow, SLOT(updateParticle(int,double,double,double)));
         QObject::connect(particlesEditorTable, SIGNAL(particleDeleted(int)), mainWindow, SLOT(deleteParticle(int)));
+        QObject::connect(editParticlesAction, SIGNAL(triggered()), mainWindow, SLOT(editParticles()));
 
         mainContent->setCurrentIndex(0);
 
@@ -242,7 +244,7 @@ public:
         saveAction->setText(QApplication::translate("mainWindow", "\320\241\320\276\321\205\321\200\320\260\320\275\320\270\321\202\321\214", 0));
         saveAsAction->setText(QApplication::translate("mainWindow", "\320\241\320\276\321\205\321\200\320\260\320\275\320\270\321\202\321\214 \320\272\320\260\320\272 ...", 0));
         exit->setText(QApplication::translate("mainWindow", "\320\222\321\213\320\271\321\202\320\270", 0));
-        editParticles->setText(QApplication::translate("mainWindow", "\320\222\321\205\320\276\320\264\320\275\321\213\320\265 \320\264\320\260\320\275\320\275\321\213\320\265", 0));
+        editParticlesAction->setText(QApplication::translate("mainWindow", "\320\222\321\205\320\276\320\264\320\275\321\213\320\265 \320\264\320\260\320\275\320\275\321\213\320\265", 0));
         toggleParticleEditorAction->setText(QApplication::translate("mainWindow", "\320\240\320\265\320\264\320\260\320\272\321\202\320\276\321\200 \320\262\321\205\320\276\320\264\320\275\321\213\321\205 \320\264\320\260\320\275\320\275\321\213\321\205", 0));
         mainContent->setTabText(mainContent->indexOf(mainCanvas), QApplication::translate("mainWindow", "Main Canvas", 0));
         file->setTitle(QApplication::translate("mainWindow", "\320\244\320\260\320\271\320\273", 0));

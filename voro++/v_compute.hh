@@ -88,8 +88,22 @@ class voro_compute {
 		/** The class destructor frees the dynamically allocated memory
 		 * for the mask and queue. */
 		~voro_compute() {
-			delete [] qu;
-			delete [] mask;
+			delete[] qu; qu = 0;
+			delete[] mask; mask = 0;
+
+			//delete[]mrad; mrad = 0;
+
+			//int l;
+			//for (l = 0; l < hxyz; l++)
+			//	delete[] p[l]; p[l] = 0;
+			//for (l = 0; l < hxyz; l++)
+			//	delete[] id[l]; id[l] = 0;
+			//delete[] id; 
+			//id = 0;
+			//delete[] p;
+			//p = 0;
+			//delete[] co; 
+			//co = 0;
 		}
 		template<class v_cell>
 		bool compute_cell(v_cell &c,int ijk,int s,int ci,int cj,int ck);

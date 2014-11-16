@@ -43,12 +43,14 @@ container_base::container_base(double ax_,double bx_,double ay_,double by_,doubl
 /** The container destructor frees the dynamically allocated memory. */
 container_base::~container_base() {
 	int l;
-	//for(l=0;l<nxyz;l++) delete [] p[l];
-	//for(l=0;l<nxyz;l++) delete [] id[l];
-	delete [] id;
-	delete [] p;
-	delete [] co;
-	delete [] mem;
+	for(l=0;l<nxyz;l++) 
+		delete[] p[l]; //p[l] = 0;
+	for(l=0;l<nxyz;l++) 
+		delete[] id[l]; //id[l] = 0;
+	delete[] id; id = 0;
+	delete[] p; p = 0;
+	delete[] co; co = 0;
+	delete[] mem; mem = 0;
 }
 
 /** The class constructor sets up the geometry of container.
@@ -521,6 +523,7 @@ wall_list::wall_list() : walls(new wall*[init_wall_size]), wep(walls), wel(walls
 /** The wall_list destructor frees the array of pointers to the wall classes.
  */
 wall_list::~wall_list() {
+	deallocate();
 	delete [] walls;
 }
 

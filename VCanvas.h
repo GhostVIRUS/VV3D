@@ -17,6 +17,8 @@ public:
 	~VCanvas();
 
 	void setCells(QMap<int, VCell *> *cells) { drawingData = cells; updateGL(); }
+	void setAxesLength(double lenght) { axesLength = lenght; }
+	void setScaling(float scl) { scaling = scl; }
 
 protected:
 	void initializeGL();
@@ -37,6 +39,8 @@ private:
 	GLfloat rotationZ;
 	QPoint lastPos;
 	GLfloat scaling;
+	
+	GLdouble axesLength;
 
 	QMap<int, VCell *> *drawingData;
 };

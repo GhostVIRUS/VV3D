@@ -54,10 +54,11 @@ public:
     {
         if (newDiagramDialog->objectName().isEmpty())
             newDiagramDialog->setObjectName(QStringLiteral("newDiagramDialog"));
-        newDiagramDialog->setWindowModality(Qt::WindowModal);
+        newDiagramDialog->setWindowModality(Qt::NonModal);
         newDiagramDialog->resize(640, 480);
         newDiagramDialog->setMinimumSize(QSize(320, 240));
         newDiagramDialog->setMaximumSize(QSize(640, 480));
+        newDiagramDialog->setModal(true);
         gridLayoutDialog = new QGridLayout(newDiagramDialog);
         gridLayoutDialog->setObjectName(QStringLiteral("gridLayoutDialog"));
         horizontalLayout = new QHBoxLayout();

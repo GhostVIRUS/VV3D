@@ -3,7 +3,7 @@
  <class>newDiagramDialog</class>
  <widget class="QDialog" name="newDiagramDialog">
   <property name="windowModality">
-   <enum>Qt::WindowModal</enum>
+   <enum>Qt::NonModal</enum>
   </property>
   <property name="geometry">
    <rect>
@@ -27,6 +27,9 @@
   </property>
   <property name="windowTitle">
    <string>Новая диаграма</string>
+  </property>
+  <property name="modal">
+   <bool>true</bool>
   </property>
   <layout class="QGridLayout" name="gridLayoutDialog">
    <item row="0" column="0">

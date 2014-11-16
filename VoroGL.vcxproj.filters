@@ -113,6 +113,15 @@
     <ClCompile Include="GeneratedFiles\Release\moc_VParticlesTableEdit.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="VEditParticlesDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_VEditParticlesDialog.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_VEditParticlesDialog.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="VMainWindow.h">
@@ -135,6 +144,12 @@
     </CustomBuild>
     <CustomBuild Include="VParticlesTableEdit.h">
       <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="VEditParticlesDialog.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="editParticlesDialog.ui">
+      <Filter>Form Files</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -182,6 +197,9 @@
     </ClInclude>
     <ClInclude Include="VCell.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_editParticlesDialog.h">
+      <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
