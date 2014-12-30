@@ -11,7 +11,14 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Редактор входных данных</string>
+   <string>Редактор вхідних данних</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="v_resources.qrc">
+    <normaloff>:/v_res/Resources/icons/application_edit.png</normaloff>:/v_res/Resources/icons/application_edit.png</iconset>
+  </property>
+  <property name="locale">
+   <locale language="Ukrainian" country="Ukraine"/>
   </property>
   <property name="modal">
    <bool>true</bool>
@@ -45,7 +52,7 @@
       </sizepolicy>
      </property>
      <property name="title">
-      <string>Random</string>
+      <string>Випадкові точки</string>
      </property>
      <property name="flat">
       <bool>false</bool>
@@ -60,7 +67,7 @@
       <item row="2" column="0">
        <widget class="QPushButton" name="generateRandomButton">
         <property name="text">
-         <string>Generate</string>
+         <string>Сгенерувати</string>
         </property>
        </widget>
       </item>
@@ -80,7 +87,7 @@
       <item row="0" column="0">
        <widget class="QLabel" name="randomCountLabel">
         <property name="text">
-         <string>Количество:</string>
+         <string>Кількість:</string>
         </property>
        </widget>
       </item>
@@ -94,7 +101,9 @@
   <tabstop>randomCountSpin</tabstop>
   <tabstop>generateRandomButton</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="v_resources.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>buttonBox</sender>

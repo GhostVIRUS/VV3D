@@ -6,6 +6,8 @@
 
 #include "VPoint.h"
 #include <QString>
+#include <QPushButton>
+#include <QTextCodec>
 
 class VNewDiagramDialog : public QDialog
 {

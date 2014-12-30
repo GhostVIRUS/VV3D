@@ -19,6 +19,13 @@
   <property name="windowTitle">
    <string>Voronoi Viewer 3D</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="v_resources.qrc">
+    <normaloff>:/v_res/Resources/icons/voro_icon.png</normaloff>:/v_res/Resources/icons/voro_icon.png</iconset>
+  </property>
+  <property name="locale">
+   <locale language="Ukrainian" country="Ukraine"/>
+  </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="windowGridLayout">
     <property name="bottomMargin">
@@ -47,10 +54,40 @@
       <property name="movable">
        <bool>true</bool>
       </property>
-      <widget class="VCanvas" name="mainCanvas">
+      <widget class="VCanvas" name="initalContentWrapper">
        <attribute name="title">
-        <string>Main Canvas</string>
+        <string>Початкова сторінка</string>
        </attribute>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="initalImageLabel">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="pixmap">
+           <pixmap resource="v_resources.qrc">:/v_res/Resources/inital.png</pixmap>
+          </property>
+          <property name="scaledContents">
+           <bool>false</bool>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </widget>
      </widget>
     </item>
@@ -70,12 +107,6 @@
      <string>Файл</string>
     </property>
     <addaction name="newDiagramAction"/>
-    <addaction name="newWindowAction"/>
-    <addaction name="separator"/>
-    <addaction name="openAction"/>
-    <addaction name="separator"/>
-    <addaction name="saveAction"/>
-    <addaction name="saveAsAction"/>
     <addaction name="separator"/>
     <addaction name="exit"/>
    </widget>
@@ -90,47 +121,18 @@
      <string>Вид</string>
     </property>
     <addaction name="toggleParticleEditorAction"/>
-   </widget>
-   <widget class="QMenu" name="settings">
-    <property name="title">
-     <string>Настройки</string>
-    </property>
-   </widget>
-   <widget class="QMenu" name="tools">
-    <property name="title">
-     <string>Инструменты</string>
-    </property>
-   </widget>
-   <widget class="QMenu" name="windows">
-    <property name="title">
-     <string>Окна</string>
-    </property>
-   </widget>
-   <widget class="QMenu" name="ref">
-    <property name="title">
-     <string>Справка</string>
-    </property>
+    <addaction name="toggleCellsViewerAction"/>
+    <addaction name="separator"/>
+    <addaction name="toggleParticlesNumbersVisibilityAction"/>
+    <addaction name="toggleAxesVisibilityAction"/>
+    <addaction name="separator"/>
+    <addaction name="restoreCameraDefaultViewAction"/>
+    <addaction name="separator"/>
+    <addaction name="toggleFullscreenAction"/>
    </widget>
    <addaction name="file"/>
    <addaction name="edit"/>
    <addaction name="view"/>
-   <addaction name="settings"/>
-   <addaction name="tools"/>
-   <addaction name="windows"/>
-   <addaction name="ref"/>
-  </widget>
-  <widget class="QStatusBar" name="statusBar"/>
-  <widget class="QToolBar" name="toolBar">
-   <property name="windowTitle">
-    <string>toolBar</string>
-   </property>
-   <attribute name="toolBarArea">
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>false</bool>
-   </attribute>
-   <addaction name="newDiagramAction"/>
   </widget>
   <widget class="QDockWidget" name="particlesEditor">
    <property name="sizePolicy">
@@ -139,11 +141,15 @@
      <verstretch>0</verstretch>
     </sizepolicy>
    </property>
+   <property name="windowIcon">
+    <iconset resource="v_resources.qrc">
+     <normaloff>:/v_res/Resources/icons/note_edit.png</normaloff>:/v_res/Resources/icons/note_edit.png</iconset>
+   </property>
    <property name="floating">
     <bool>false</bool>
    </property>
    <property name="windowTitle">
-    <string>Редактор частиц</string>
+    <string>Редактор частинок</string>
    </property>
    <attribute name="dockWidgetArea">
     <number>1</number>
@@ -236,7 +242,7 @@
       </widget>
      </item>
      <item row="1" column="0" colspan="3">
-      <widget class="VParticlesTableEdit" name="particlesEditorTable">
+      <widget class="VParticlesEditTable" name="particlesEditorTable">
        <property name="gridStyle">
         <enum>Qt::SolidLine</enum>
        </property>
@@ -254,16 +260,61 @@
     </layout>
    </widget>
   </widget>
-  <widget class="QToolBar" name="toolBar_2">
-   <property name="windowTitle">
-    <string>toolBar_2</string>
-   </property>
-   <attribute name="toolBarArea">
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
+  <widget class="QDockWidget" name="cellsViewer">
+   <property name="acceptDrops">
     <bool>false</bool>
+   </property>
+   <property name="windowIcon">
+    <iconset resource="v_resources.qrc">
+     <normaloff>:/v_res/Resources/icons/list.png</normaloff>:/v_res/Resources/icons/list.png</iconset>
+   </property>
+   <property name="floating">
+    <bool>false</bool>
+   </property>
+   <property name="windowTitle">
+    <string>Комірки</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>1</number>
    </attribute>
+   <widget class="QWidget" name="cellsViewerWrapper">
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <property name="leftMargin">
+      <number>6</number>
+     </property>
+     <property name="topMargin">
+      <number>3</number>
+     </property>
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
+     <property name="bottomMargin">
+      <number>6</number>
+     </property>
+     <item>
+      <widget class="VCellsViewerTable" name="cellsViewerTable">
+       <property name="contextMenuPolicy">
+        <enum>Qt::DefaultContextMenu</enum>
+       </property>
+       <column>
+        <property name="text">
+         <string>Колір</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Видимість</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Інформ.</string>
+        </property>
+       </column>
+      </widget>
+     </item>
+    </layout>
+   </widget>
   </widget>
   <action name="newDiagramAction">
    <property name="icon">
@@ -271,7 +322,10 @@
      <normaloff>:/v_res/Resources/icons/document_16.png</normaloff>:/v_res/Resources/icons/document_16.png</iconset>
    </property>
    <property name="text">
-    <string>Новая диаграмма</string>
+    <string>Нова діаграма</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
    </property>
    <property name="menuRole">
     <enum>QAction::ApplicationSpecificRole</enum>
@@ -299,7 +353,10 @@
   </action>
   <action name="exit">
    <property name="text">
-    <string>Выйти</string>
+    <string>Вийти</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::QuitRole</enum>
    </property>
   </action>
   <action name="editParticlesAction">
@@ -309,16 +366,103 @@
    <property name="enabled">
     <bool>false</bool>
    </property>
+   <property name="icon">
+    <iconset resource="v_resources.qrc">
+     <normaloff>:/v_res/Resources/icons/application_edit.png</normaloff>:/v_res/Resources/icons/application_edit.png</iconset>
+   </property>
    <property name="text">
-    <string>Входные данные</string>
+    <string>Вхідні данні</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+E</string>
    </property>
   </action>
   <action name="toggleParticleEditorAction">
    <property name="checkable">
     <bool>true</bool>
    </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="v_resources.qrc">
+     <normaloff>:/v_res/Resources/icons/note_edit.png</normaloff>:/v_res/Resources/icons/note_edit.png</iconset>
+   </property>
    <property name="text">
-    <string>Редактор входных данных</string>
+    <string>Редактор вхідних данних</string>
+   </property>
+  </action>
+  <action name="toggleCellsViewerAction">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="v_resources.qrc">
+     <normaloff>:/v_res/Resources/icons/list.png</normaloff>:/v_res/Resources/icons/list.png</iconset>
+   </property>
+   <property name="text">
+    <string>Комірки</string>
+   </property>
+  </action>
+  <action name="getDiagramInfoAction">
+   <property name="text">
+    <string>Информация о диаграме</string>
+   </property>
+  </action>
+  <action name="getCellInfoAction">
+   <property name="text">
+    <string>Информация о ячейке</string>
+   </property>
+  </action>
+  <action name="toggleParticlesNumbersVisibilityAction">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Номера частинок</string>
+   </property>
+  </action>
+  <action name="restoreCameraDefaultViewAction">
+   <property name="icon">
+    <iconset resource="v_resources.qrc">
+     <normaloff>:/v_res/Resources/icons/video.png</normaloff>:/v_res/Resources/icons/video.png</iconset>
+   </property>
+   <property name="text">
+    <string>Положення камери за умовчанням</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::ApplicationSpecificRole</enum>
+   </property>
+  </action>
+  <action name="toggleAxesVisibilityAction">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Координатні вісі</string>
+   </property>
+  </action>
+  <action name="toggleFullscreenAction">
+   <property name="text">
+    <string>Повноекранний режим</string>
+   </property>
+   <property name="shortcut">
+    <string>F11</string>
    </property>
   </action>
  </widget>
@@ -331,16 +475,19 @@
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>VParticlesTableEdit</class>
+   <class>VCellsViewerTable</class>
    <extends>QTableWidget</extends>
-   <header>VParticlesTableEdit.h</header>
+   <header>VCellsViewerTable.h</header>
    <slots>
-    <signal>particleChanged(int,double,double,double)</signal>
-    <signal>particleDeleted(int)</signal>
-    <slot>addRow()</slot>
-    <slot>deleteRow()</slot>
-    <slot>checkRow(int,int)</slot>
+    <signal>cellColorChanged(int,QColor)</signal>
+    <signal>cellVisibilityToggled(int)</signal>
+    <signal>cellInfoCalled(int)</signal>
    </slots>
+  </customwidget>
+  <customwidget>
+   <class>VParticlesEditTable</class>
+   <extends>QTableWidget</extends>
+   <header>VParticlesEditTable.h</header>
   </customwidget>
  </customwidgets>
  <resources>
@@ -439,7 +586,7 @@
     </hint>
     <hint type="destinationlabel">
      <x>101</x>
-     <y>421</y>
+     <y>334</y>
     </hint>
    </hints>
   </connection>
@@ -467,7 +614,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>105</x>
-     <y>486</y>
+     <y>334</y>
     </hint>
     <hint type="destinationlabel">
      <x>417</x>
@@ -491,6 +638,182 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>toggleCellsViewerAction</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>cellsViewer</receiver>
+   <slot>setVisible(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>86</x>
+     <y>487</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cellsViewer</sender>
+   <signal>visibilityChanged(bool)</signal>
+   <receiver>toggleCellsViewerAction</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>130</x>
+     <y>471</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cellsViewerTable</sender>
+   <signal>cellVisibilityToggled(int)</signal>
+   <receiver>mainWindow</receiver>
+   <slot>toggleCellVisibility(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>228</x>
+     <y>404</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>272</x>
+     <y>334</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cellsViewerTable</sender>
+   <signal>cellColorChanged(int,QColor)</signal>
+   <receiver>mainWindow</receiver>
+   <slot>changeCellColor(int,QColor)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>151</x>
+     <y>450</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>269</x>
+     <y>441</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cellsViewerTable</sender>
+   <signal>cellInfoCalled(int)</signal>
+   <receiver>mainWindow</receiver>
+   <slot>showCellInfo(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>126</x>
+     <y>497</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>270</x>
+     <y>521</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>mainContent</sender>
+   <signal>tabCloseRequested(int)</signal>
+   <receiver>mainWindow</receiver>
+   <slot>closeContentTab(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>543</x>
+     <y>266</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>267</x>
+     <y>137</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>toggleParticlesNumbersVisibilityAction</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>toggleParticlesNumbersVisibility()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>309</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>restoreCameraDefaultViewAction</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>restoreDefaultView()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>309</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>exit</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>309</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>toggleFullscreenAction</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>mainWindow</receiver>
+   <slot>showFullScreen()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>309</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>toggleAxesVisibilityAction</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>toggleAxesVisibility()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>309</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>newFile()</slot>
@@ -499,5 +822,12 @@
   <slot>updateParticle(int,double,double,double)</slot>
   <slot>deleteParticle(int)</slot>
   <slot>editParticles()</slot>
+  <slot>changeCellColor(int,QColor)</slot>
+  <slot>toggleCellVisibility(int)</slot>
+  <slot>showCellInfo(int)</slot>
+  <slot>closeContentTab(int)</slot>
+  <slot>toggleParticlesNumbersVisibility()</slot>
+  <slot>restoreDefaultView()</slot>
+  <slot>toggleAxesVisibility()</slot>
  </slots>
 </ui>

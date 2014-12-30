@@ -4,8 +4,10 @@
 #include <QDialog>
 #include <QString>
 #include <QStringList>
+#include <QTextCodec>
 #include "VPoint.h"
 #include <QList>
+#include <qmath.h>
 #include "ui_editParticlesDialog.h"
 
 class VEditParticlesDialog : public QDialog

@@ -9,6 +9,7 @@
 #ifndef UI_NEWDIAGRAMDIALOG_H
 #define UI_NEWDIAGRAMDIALOG_H
 
+#include <QtCore/QLocale>
 #include <QtCore/QVariant>
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
@@ -58,6 +59,10 @@ public:
         newDiagramDialog->resize(640, 480);
         newDiagramDialog->setMinimumSize(QSize(320, 240));
         newDiagramDialog->setMaximumSize(QSize(640, 480));
+        QIcon icon;
+        icon.addFile(QStringLiteral(":/v_res/Resources/icons/document_16.png"), QSize(), QIcon::Normal, QIcon::Off);
+        newDiagramDialog->setWindowIcon(icon);
+        newDiagramDialog->setLocale(QLocale(QLocale::Ukrainian, QLocale::Ukraine));
         newDiagramDialog->setModal(true);
         gridLayoutDialog = new QGridLayout(newDiagramDialog);
         gridLayoutDialog->setObjectName(QStringLiteral("gridLayoutDialog"));
@@ -106,6 +111,7 @@ public:
         gridLayoutParams->setObjectName(QStringLiteral("gridLayoutParams"));
         vertex1xSpin = new QDoubleSpinBox(parametersGroup);
         vertex1xSpin->setObjectName(QStringLiteral("vertex1xSpin"));
+        vertex1xSpin->setDecimals(3);
         vertex1xSpin->setMinimum(-5);
         vertex1xSpin->setMaximum(4);
         vertex1xSpin->setSingleStep(0.5);
@@ -115,6 +121,7 @@ public:
 
         vertex1ySpin = new QDoubleSpinBox(parametersGroup);
         vertex1ySpin->setObjectName(QStringLiteral("vertex1ySpin"));
+        vertex1ySpin->setDecimals(3);
         vertex1ySpin->setMinimum(-5);
         vertex1ySpin->setMaximum(4);
         vertex1ySpin->setSingleStep(0.5);
@@ -129,6 +136,7 @@ public:
 
         vertex1zSpin = new QDoubleSpinBox(parametersGroup);
         vertex1zSpin->setObjectName(QStringLiteral("vertex1zSpin"));
+        vertex1zSpin->setDecimals(3);
         vertex1zSpin->setMinimum(-5);
         vertex1zSpin->setMaximum(4);
         vertex1zSpin->setSingleStep(0.5);
@@ -143,7 +151,7 @@ public:
 
         vertex2zSpin = new QDoubleSpinBox(parametersGroup);
         vertex2zSpin->setObjectName(QStringLiteral("vertex2zSpin"));
-        vertex2zSpin->setDecimals(2);
+        vertex2zSpin->setDecimals(3);
         vertex2zSpin->setMinimum(-4);
         vertex2zSpin->setMaximum(5);
         vertex2zSpin->setSingleStep(0.5);
@@ -153,7 +161,7 @@ public:
 
         vertex2xSpin = new QDoubleSpinBox(parametersGroup);
         vertex2xSpin->setObjectName(QStringLiteral("vertex2xSpin"));
-        vertex2xSpin->setDecimals(2);
+        vertex2xSpin->setDecimals(3);
         vertex2xSpin->setMinimum(-4);
         vertex2xSpin->setMaximum(5);
         vertex2xSpin->setSingleStep(0.5);
@@ -163,7 +171,7 @@ public:
 
         vertex2ySpin = new QDoubleSpinBox(parametersGroup);
         vertex2ySpin->setObjectName(QStringLiteral("vertex2ySpin"));
-        vertex2ySpin->setDecimals(2);
+        vertex2ySpin->setDecimals(3);
         vertex2ySpin->setMinimum(-4);
         vertex2ySpin->setMaximum(5);
         vertex2ySpin->setSingleStep(0.5);
@@ -194,6 +202,7 @@ public:
         buttonBox->setMinimumSize(QSize(0, 50));
         buttonBox->setOrientation(Qt::Vertical);
         buttonBox->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::Ok);
+        buttonBox->setCenterButtons(false);
 
         horizontalLayout->addWidget(buttonBox);
 
@@ -221,14 +230,14 @@ public:
 
     void retranslateUi(QDialog *newDiagramDialog)
     {
-        newDiagramDialog->setWindowTitle(QApplication::translate("newDiagramDialog", "\320\235\320\276\320\262\320\260\321\217 \320\264\320\270\320\260\320\263\321\200\320\260\320\274\320\260", 0));
-        nameLabel->setText(QApplication::translate("newDiagramDialog", "\320\230\320\274\321\217:", 0));
+        newDiagramDialog->setWindowTitle(QApplication::translate("newDiagramDialog", "\320\235\320\276\320\262\320\260 \320\264\321\226\320\260\320\263\321\200\320\260\320\274\320\260", 0));
+        nameLabel->setText(QApplication::translate("newDiagramDialog", "\320\235\320\260\320\267\320\262\320\260:", 0));
         typeLabel->setText(QApplication::translate("newDiagramDialog", "\320\242\320\270\320\277:", 0));
         nameLineEdit->setText(QApplication::translate("newDiagramDialog", "NewDiagram", 0));
         typeComboBox->setCurrentText(QString());
-        parametersGroup->setTitle(QApplication::translate("newDiagramDialog", "\320\237\320\260\321\200\320\260\320\274\320\265\321\202\321\200\321\213", 0));
-        diagonalVertex1Label->setText(QApplication::translate("newDiagramDialog", "1 \320\262\320\265\321\200\321\210\320\270\320\275\320\260 \320\264\320\270\320\260\320\263\320\276\320\275\320\260\320\273\320\270 (x, y, z):", 0));
-        diagonalVertex2Label->setText(QApplication::translate("newDiagramDialog", "2 \320\262\320\265\321\200\321\210\320\270\320\275\320\260 \320\264\320\270\320\260\320\263\320\276\320\275\320\260\320\273\320\270 (x, y, z):", 0));
+        parametersGroup->setTitle(QApplication::translate("newDiagramDialog", "\320\237\320\260\321\200\320\260\320\274\320\265\321\202\321\200\320\270", 0));
+        diagonalVertex1Label->setText(QApplication::translate("newDiagramDialog", "\320\234\321\226\320\275\321\226\320\274\320\260\320\273\321\214\320\275\321\226 \320\267\320\275\320\260\321\207\320\265\320\275\320\275\321\217 \320\262 \320\272\320\276\320\275\321\202\320\265\320\271\320\275\320\265\321\200\321\226 (x, y, z):", 0));
+        diagonalVertex2Label->setText(QApplication::translate("newDiagramDialog", "\320\234\320\260\320\272\321\201\320\270\320\274\320\260\320\273\321\214\320\275\321\226 \320\267\320\275\320\260\321\207\320\265\320\275\320\275\321\217 \320\262 \320\272\320\276\320\275\321\202\320\265\320\271\320\275\320\265\321\200\321\226 (x, y, z):", 0));
     } // retranslateUi
 
 };

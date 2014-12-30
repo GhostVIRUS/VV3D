@@ -5,25 +5,27 @@
 
 int main(int argc, char *argv[])
 {
-	//voro::container vd(-3, 3, -3, 3, -3, 3, 30, 30, 30, false, false, false, 10);
-
-	//vd.put(0, 1, 1, -1);
-	//vd.put(1, -1, 0, 0);
-
-	//vd.draw_particles("thefk_p.gnu");
-
-	//vd.draw_cells_gnuplot("thefk_v.gnu");
 
 	QApplication a(argc, argv);
 	a.setStyle(QStyleFactory::create("Fusion"));
-	/*QPalette p;
-	p = a.palette();
-	p.setColor(QPalette::Window, QColor(53, 53, 53));
-	p.setColor(QPalette::Button, QColor(53, 53, 53));
-	p.setColor(QPalette::Highlight, QColor(142, 45, 197));
-	p.setColor(QPalette::ButtonText, QColor(255, 255, 255));
-	a.setPalette(p);*/
+	QPalette darkPalette;
+	darkPalette.setColor(QPalette::Window, QColor(53 + 75, 53 + 75, 53 + 75));
+	darkPalette.setColor(QPalette::WindowText, Qt::white);
+	darkPalette.setColor(QPalette::Base, QColor(25 + 75, 25 + 75, 25 + 75));
+	darkPalette.setColor(QPalette::AlternateBase, QColor(53 + 75, 53 + 75, 53 + 75));
+	darkPalette.setColor(QPalette::ToolTipBase, Qt::white);
+	darkPalette.setColor(QPalette::ToolTipText, Qt::white);
+	darkPalette.setColor(QPalette::Text, Qt::white);
+	darkPalette.setColor(QPalette::Button, QColor(53 + 75, 53 + 75, 53 + 75));
+	darkPalette.setColor(QPalette::ButtonText, Qt::white);
+	darkPalette.setColor(QPalette::BrightText, Qt::red);
+	darkPalette.setColor(QPalette::Link, QColor(42, 130, 218));
+
+	darkPalette.setColor(QPalette::Highlight, QColor(42, 130, 218));
+	darkPalette.setColor(QPalette::HighlightedText, Qt::black);
+	a.setPalette(darkPalette);
 	VMainWindow mw;
 	mw.showMaximized();
+	//mw.showFullScreen();
 	return a.exec();
 }

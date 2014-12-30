@@ -5,12 +5,18 @@ VCanvas::VCanvas(QWidget *parent)
 {
 	setFormat(QGLFormat(QGL::DoubleBuffer | QGL::DepthBuffer));
 
-	rotationX = 30.0;
-	rotationY = 45.0;
-	rotationZ = 0.0;
+	rotationX = 30.0; defaultRotationX = 30.0;
+	rotationY = 45.0; defaultRotationY = 45.0;
+	rotationZ = 0.0; defaultRotationZ = 0.0;
 	scaling = 1;
+	defaultScaling = 1;
 
 	drawingData = 0;
+
+	translX = 0.0; translY = 0.0; translZ = 0.0;
+
+	areParticlesNumbersVisible = true;
+	areAxesVisible = true;
 
 }
 VCanvas::~VCanvas()
@@ -46,7 +52,7 @@ void VCanvas::initializeGL()
 	glEnable(GL_LINE_SMOOTH);
 	glEnable(GL_POINT_SMOOTH);
 	glLineWidth(1.0);
-	glPointSize(5);
+	glPointSize(4);
 
 	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINES);
 	//glEnable(GL_POLYGON_OFFSET_LINE);
@@ -72,15 +78,25 @@ void VCanvas::paintGL()
 
 	glTranslatef(0.0, 0.0, -10.0);
 
+	qglColor(Qt::darkBlue);
+
+	glBegin(GL_POINTS);
+	glVertex3f(0.0, 0.0, 0.0);
+	glEnd();
+
 	glScalef(scaling, scaling, scaling);
 
 	glRotatef(rotationX, 1.0, 0.0, 0.0);
 	glRotatef(rotationY, 0.0, 1.0, 0.0);
 	glRotatef(rotationZ, 0.0, 0.0, 1.0);
 
-	drawAxes(axesLength);
+	glTranslatef(translX, translY, translZ); //
+
+	//drawAxes(axesLength);
 	if (drawingData != 0)
 		drawData();
+	if (areAxesVisible)
+		drawAxes(axesLength);
 }
 
 void VCanvas::mousePressEvent(QMouseEvent *event)
@@ -116,23 +132,7 @@ void VCanvas::wheelEvent(QWheelEvent *event)
 
 void VCanvas::mouseDoubleClickEvent(QMouseEvent *event)
 {
-//	int face = faceAtPosition(event->pos());
-//	if (face != -1) {
-//		QColor color = QColorDialog::getColor(faceColors[face], this);
-//		if (color.isValid()) {
-//			faceColors[face] = color;
-//			updateGL();
-//		}
-//	}
-	//else
-	//{
-	/*	for (int i = 1; i < voronoiCells.size(); ++i)
-		{
-			voronoiCells[i].transparency = voronoiCells[0].transparency ? false : true;
-		}
-		voronoiCells[0].transparency = voronoiCells[0].transparency ? false : true;
-		updateGL();
-	}*/
+	updateGL();
 }
 
 void VCanvas::drawAxes(GLdouble length)
@@ -141,7 +141,7 @@ void VCanvas::drawAxes(GLdouble length)
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	glPushMatrix();
-	qglColor(Qt::darkBlue);
+	qglColor(Qt::darkCyan);
 
 	renderText(length, 0.1, 0.0, QChar('x'));
 	for (GLdouble i = 1; i <= length-1; i = i + 1.0)
@@ -165,7 +165,7 @@ void VCanvas::drawAxes(GLdouble length)
 	//glPopMatrix();
 
 	//glPushMatrix();
-	qglColor(Qt::darkGreen);
+	qglColor(Qt::darkYellow);
 	renderText(0.1, length, 0.0, QChar('y'));
 	for (GLdouble i = 1; i <= length-1; i = i + 1.0)
 	{
@@ -188,7 +188,7 @@ void VCanvas::drawAxes(GLdouble length)
 	//glPopMatrix();
 
 	//glPushMatrix();
-	qglColor(Qt::darkCyan);
+	qglColor(Qt::darkMagenta);
 	renderText(0.0, 0.1, length, QChar('z'));
 	for (GLdouble i = 1; i <= length-1; i = i + 1.0)
 	{
@@ -213,39 +213,6 @@ void VCanvas::drawAxes(GLdouble length)
 	glDisable(GL_BLEND);
 }
 
-
-/*
-int VCanvas::faceAtPosition(const QPoint &pos)
-{
-	const int MaxSize = 512;
-	GLuint buffer[MaxSize];
-	GLint viewport[4];
-
-	makeCurrent();
-
-	glGetIntegerv(GL_VIEWPORT, viewport);
-	glSelectBuffer(MaxSize, buffer);
-	glRenderMode(GL_SELECT);
-
-	glInitNames();
-	glPushName(0);
-
-	glMatrixMode(GL_PROJECTION);
-	glPushMatrix();
-	glLoadIdentity();
-	gluPickMatrix(GLdouble(pos.x()), GLdouble(viewport[3] - pos.y()),
-		5.0, 5.0, viewport);
-	GLfloat x = GLfloat(width()) / height();
-	glFrustum(-x, x, -1.0, 1.0, 4.0, 15.0);
-//	drawCells();
-	glMatrixMode(GL_PROJECTION);
-	glPopMatrix();
-
-	if (!glRenderMode(GL_RENDER))
-		return -1;
-	return buffer[3];
-}*/
-
 void VCanvas::drawData()
 {
 	//drawing particles
@@ -254,11 +221,15 @@ void VCanvas::drawData()
 	while (i.hasNext())
 	{
 		i.next();
-		const VPoint *pParticle = i.value()->getParticle();
-		glBegin(GL_POINTS);
-		glVertex3f(pParticle->x, pParticle->y, pParticle->z);
-		glEnd();
-		renderText(pParticle->x - 0.3, pParticle->y, pParticle->z, QString::number(i.key() + 1));
+		if (1)
+		{
+			const VPoint *pParticle = i.value()->getParticle();
+			glBegin(GL_POINTS);
+			glVertex3f(pParticle->x, pParticle->y, pParticle->z);
+			glEnd();
+			if (areParticlesNumbersVisible)
+				renderText(pParticle->x + 0.05 / defaultScaling, pParticle->y + 0.05 / defaultScaling, pParticle->z + 0.05 / defaultScaling, QString::number(i.key() + 1));
+		}
 	}
 
 	//drawing faces
@@ -272,18 +243,21 @@ void VCanvas::drawData()
 	while (i.hasNext())
 	{
 		i.next();
-		qglColor(*i.value()->getColor());
-		int fc = i.value()->faceCount();
-		for (int j = 0; j < fc; ++j)
+		if (i.value()->getVisibility())
 		{
-			//glLoadName(i);
-			const QList<VPoint> *pFace = i.value()->getFace(j);
-			glBegin(GL_POLYGON);
-			for (int j = 0; j < pFace->size(); ++j)
+			qglColor(*i.value()->getColor());
+			int fc = i.value()->faceCount();
+			for (int j = 0; j < fc; ++j)
 			{
-				glVertex3f(pFace->at(j).x, pFace->at(j).y, pFace->at(j).z);
+				//glLoadName(i);
+				const QList<VPoint> *pFace = i.value()->getFace(j);
+				glBegin(GL_POLYGON);
+				for (int j = 0; j < pFace->size(); ++j)
+				{
+					glVertex3f(pFace->at(j).x, pFace->at(j).y, pFace->at(j).z);
+				}
+				glEnd();
 			}
-			glEnd();
 		}
 	}
 
@@ -299,19 +273,39 @@ void VCanvas::drawData()
 	while (i.hasNext())
 	{
 		i.next();
-		int fc = i.value()->faceCount();
-		for (int j = 0; j < fc; ++j) {
-			//glLoadName(i);
-			const QList<VPoint> *pFace = i.value()->getFace(j);
-			glBegin(GL_LINE_LOOP);
-			for (int j = 0; j < pFace->size(); ++j)
-			{
-				glVertex3f(pFace->at(j).x, pFace->at(j).y, pFace->at(j).z);
+		if (i.value()->getVisibility())
+		{
+			int fc = i.value()->faceCount();
+			for (int j = 0; j < fc; ++j) {
+				//glLoadName(i);
+				const QList<VPoint> *pFace = i.value()->getFace(j);
+				glBegin(GL_LINE_LOOP);
+				for (int j = 0; j < pFace->size(); ++j)
+				{
+					glVertex3f(pFace->at(j).x, pFace->at(j).y, pFace->at(j).z);
+				}
+				glEnd();
 			}
-			glEnd();
 		}
 	}
 	glDisable(GL_BLEND);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+}
+
+void VCanvas::keyPressed(QString key)
+{
+	if (key == "z")
+		translX += 0.1;
+	else if (key == "a")
+		translX -= 0.1;
+	else if (key == "x")
+		translY += 0.1;
+	else if (key == "s")
+		translY -= 0.1;
+	else if (key == "c")
+		translZ += 0.1;
+	else if (key == "d")
+		translZ -= 0.1;
+	updateGL();
 }
 

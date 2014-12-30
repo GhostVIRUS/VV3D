@@ -19,6 +19,14 @@ public:
 	void setCells(QMap<int, VCell *> *cells) { drawingData = cells; updateGL(); }
 	void setAxesLength(double lenght) { axesLength = lenght; }
 	void setScaling(float scl) { scaling = scl; }
+	void setDefaultScaling(float scl) { defaultScaling = scl; }
+	void restoreDefaultView() { scaling = defaultScaling; 
+								rotationX = defaultRotationX; rotationY = defaultRotationY; rotationZ = defaultRotationZ;
+								translX = 0.0; translY = 0.0; translZ = 0.0; updateGL(); }
+
+	void toggleParticlesNumbersVisibility() { areParticlesNumbersVisible = !areParticlesNumbersVisible; updateGL(); }
+	void toggleAxesVisibility() { areAxesVisible = !areAxesVisible; updateGL(); }
+	void keyPressed(QString key);
 
 protected:
 	void initializeGL();
@@ -28,21 +36,25 @@ protected:
 	void mouseMoveEvent(QMouseEvent *event);
 	void mouseDoubleClickEvent(QMouseEvent *event);
 	void wheelEvent(QWheelEvent *event);
+	//void keyPressEvent(QKeyEvent *event);
 
 private:
 	void drawData();
 	void drawAxes(GLdouble length);
 	int faceAtPosition(const QPoint &pos);
 
-	GLfloat rotationX;
-	GLfloat rotationY;
-	GLfloat rotationZ;
+	GLfloat rotationX, defaultRotationX;
+	GLfloat rotationY, defaultRotationY;
+	GLfloat rotationZ, defaultRotationZ;
 	QPoint lastPos;
-	GLfloat scaling;
+	GLfloat scaling, defaultScaling;
+	GLfloat translX, translY, translZ;
 	
 	GLdouble axesLength;
 
 	QMap<int, VCell *> *drawingData;
+
+	bool areParticlesNumbersVisible, areAxesVisible;
 };
 
 #endif //VCANVAS_H

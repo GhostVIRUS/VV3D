@@ -1,5 +1,12 @@
 <RCC>
   <qresource prefix="v_res">
+    <file>Resources/icons/voro_icon.png</file>
+    <file>Resources/icons/soil_layers.png</file>
+    <file>Resources/icons/list.png</file>
+    <file>Resources/inital.png</file>
+    <file>Resources/icons/note_edit.png</file>
+    <file>Resources/icons/video.png</file>
+    <file>Resources/icons/application_edit.png</file>
     <file>Resources/icons/document_16.png</file>
     <file>Resources/icons/document_32.png</file>
     <file>Resources/icons/diagram_16.png</file>

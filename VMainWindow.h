@@ -1,10 +1,8 @@
 #ifndef VOROGL_H
 #define VOROGL_H
 
-//#include <QtWidgets/QMainWindow>
 #include <QtGui>
 #include "voro++/container.hh"
-#include "voro++/pre_container.hh"
 #include "voro++/c_loops.hh"
 
 #include "ui_mainWindow.h"
@@ -25,17 +23,35 @@ public:
 public slots:
 	void createNewFile(QString name, int type, VPoint a, VPoint b);
 	void newFile();
-	//void updateParticles();
+
 	void updateParticle(int row, double x, double y, double z);
 	void deleteParticle(int row);
 	void editParticles();
 	void updateParticles(QList<VPoint *> particles);
 
+	void changeCellColor(int id, QColor color);
+	void toggleCellVisibility(int id);
+//	void setCellVisibility(int id, bool state);
+	void toggleParticlesNumbersVisibility();
+	void toggleAxesVisibility();
+
+	void restoreDefaultView();
+
+	void showCellInfo(int id);
+
+	void closeContentTab(int id);
+
+
+public:
+	QTextCodec *codec;
+
+protected:
+	void keyPressEvent(QKeyEvent *event);
+
 private:
 	void updateContainer(int added = -1);
 	bool checkParticle(double x, double y, double z);
 	void getCells();
-	//void getCell();
 	void updateContent();
 
 	Ui::mainWindow ui; // contains objects and settings for user interface
